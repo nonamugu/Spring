@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="boardDTO" class="com.ohgiraffers.common.BoardDTO">
+        <property name="id" value="1" />
+        <property name="title" value="의존성 주입 연습" />
+        <property name="content" value="게시글의 작성자 객체를 주입 받아볼게요!" />
+        <property name="writer">
+            <ref bean="memberDTO" />
+        </property>
+    </bean>
+
+    <bean id="memberDTO" class="com.ohgiraffers.common.MemberDTO">
+        <property name="id" value="1" />
+        <property name="nickname" value="스프링꿈나무" />
+    </bean>
+
+</beans>
