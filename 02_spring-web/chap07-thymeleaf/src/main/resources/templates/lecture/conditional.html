@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>conditional</title>
+</head>
+<body>
+  <h1>제어문</h1>
+  <p th:if="${ num > 0 }">넘어온 값은 0보다 크다.</p> <!-- 조건에 해당되면 -->
+  <p th:if="${ num < 0 }">넘어온 값은 0보다 작다.</p>
+  <p th:unless="${ num < 0 }">넘어온 값은 0보다 크다.</p> <!-- 조건에 해당하지 않으면 -->
+
+  <th:block th:if="${ str == '사과' }"> <!-- th:block을 사용할 수도 있다. -->
+    <p>사과 좋아요!</p>
+  </th:block>
+
+  <th:block th:if="${ str == '바나나' }">
+    <p>바나나 좋아요!</p>
+  </th:block>
+
+  <!-- and나 or를 사용해서 다중 조건 처리도 가능하다. -->
+  <p th:if="${ num > 0 or num <= 10 }">1부터 10까지의 양수</p>
+  <p th:if="${ str != null and str == '바나나' }">바나나 좋아요!</p>
+
+  <!-- #strings라는 타임리프에서 제공하는 Utility Objects에서 제공하는 메소드를 통해서도 null에 대한 처리를 할 수 있다. -->
+  <p th:if="${ !#strings.isEmpty(str) and str == '바나나' }">바나나 좋아요!</p>
+
+  <h2>switch/case</h2>
+  <th:block th:switch="${ str }">
+    <span th:case="사과">사과가 선택되었습니다</span>
+    <span th:case="바나나">바나나가 선택되었습니다</span>
+  </th:block>
+
+  <h2>each</h2>
+  <table>
+    <tr>
+      <th>이름</th>
+      <th>나이</th>
+      <th>성별</th>
+      <th>주소</th>
+    </tr>
+    <tr th:each="member : ${ memberList }">
+      <td th:text="${ member.name  }"></td>
+      <td th:text="${ member.age }"></td>
+      <td th:text="${ member.gender }"></td>
+      <td th:text="${ member.address }"></td>
+    </tr>
+  </table>
+
+  <!-- th:each에 stat을 추가해서 반복상태를 확인할 수 있다. -->
+  <table>
+    <tr>
+      <th>이름</th>
+      <th>나이</th>
+      <th>성별</th>
+      <th>주소</th>
+      <th>INDEX</th>
+      <th>COUNT</th>
+      <th>SIZE</th>
+      <th>CURRENT</th>
+      <th>EVEN</th>
+      <th>ODD</th>
+      <th>FIRST</th>
+      <th>LAST</th>
+    </tr>
+    <tr th:each="member, stat : ${ memberList }">
+      <td th:text="${ member.name }"></td>
+      <td th:text="${ member.age }"></td>
+      <td th:text="${ member.gender }"></td>
+      <td th:text="${ member.address }"></td>
+      <td th:text="${ stat.index }"></td>
+      <td th:text="${ stat.count }"></td>
+      <td th:text="${ stat.size }"></td>
+      <td th:text="${ stat.current }"></td>
+      <td th:text="${ stat.even }"></td>
+      <td th:text="${ stat.odd }"></td>
+      <td th:text="${ stat.first }"></td>
+      Thymeleaf 9
+      <td th:text="${ stat.last }"></td>
+    </tr>
+  </table>
+
+  <!-- th:each에 stat을 추가하지 않으면 '변수명+Stat'으로 반복상태를 확인할 수 있다. -->
+  <table>
+    <tr>
+      <th>이름</th>
+      <th>나이</th>
+      <th>성별</th>
+      <th>주소</th>
+      <th>INDEX</th>
+      <th>COUNT</th>
+      <th>SIZE</th>
+      <th>CURRENT</th>
+      <th>EVEN</th>
+      <th>ODD</th>
+      <th>FIRST</th>
+      <th>LAST</th>
+    </tr>
+    <tr th:each="member: ${ memberList }">
+      <td th:text="${ member.name }"></td>
+      <td th:text="${ member.age }"></td>
+      <td th:text="${ member.gender }"></td>
+      <td th:text="${ member.address }"></td>
+      <td th:text="${ memberStat.index }"></td>
+      <td th:text="${ memberStat.count }"></td>
+      <td th:text="${ memberStat.size }"></td>
+      <td th:text="${ memberStat.current }"></td>
+      <td th:text="${ memberStat.even }"></td>
+      <td th:text="${ memberStat.odd }"></td>
+      <td th:text="${ memberStat.first }"></td>
+      <td th:text="${ memberStat.last }"></td>
+    </tr>
+  </table>
+
+  <h3>#number Utility Object 를 이용한 반복문</h3>
+  <th:block th:each="num : ${ #numbers.sequence(5, 10) }">
+    <a th:href="@{| numbering /${ numStat.count }|}" th:text="번호 + ${ num }"></a>
+  </th:block>
+</body>
+</html>
