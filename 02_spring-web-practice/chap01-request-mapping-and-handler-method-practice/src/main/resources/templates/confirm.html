@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>confirm</title>
+</head>
+  <body>
+    <h1 th:text="|${ userId } 님의 주문 요청서|"></h1>
+
+    <h3 th:text="|주문 상품명 : ${ order.orderCode }|"></h3>
+    <h3 th:text="|주문 수량 : ${ order.orderCount }|"></h3>
+    <h3 th:text="|주문자 : ${ order.orderName }|"></h3>
+    <h3 th:text="|배송 주소 : ${ order.address }|"></h3>
+    <h3 th:text="|연락처 : ${ order.phone }|"></h3>
+    <h3 th:text="|주문일 : ${ order.date }|"></h3>
+
+    <button onclick="location.href='/main'">메인으로 입장하기</button>
+  </body>
+</html>
