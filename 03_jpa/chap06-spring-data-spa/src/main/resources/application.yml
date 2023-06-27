@@ -1,0 +1,20 @@
+# DB config
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/menu
+    username: sahmyook
+    password: sahmyook
+
+# JPA config
+  jpa:
+    generate-ddl: false
+    show-sql: true
+    database: mysql
+    properties:
+      hibernate:
+        format_sql: true
+
+server:
+  port: 8001
+
