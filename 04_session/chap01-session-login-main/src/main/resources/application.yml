@@ -1,0 +1,15 @@
+# DB config
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://mysql.hello-limu.shop:3306/security
+    username : ohgiraffers
+    password : ohgiraffers
+# JPA config
+  jpa:
+    generate-ddl: false
+    show-sql: true
+    database: mysql
+    properties:
+      hibernate:
+        format_sql: true
